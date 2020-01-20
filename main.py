@@ -222,7 +222,8 @@ def test(model, test_loader, epoch, logger=None):
     for data, target in test_loader:
         data, target = data.cuda(), target.cuda()
         output = model(data)
-        test_loss += F.nll_loss(output, target, size_average=False).data[0]  # sum up batch loss
+        #test_loss += F.nll_loss(output, target, size_average=False).data[0]  # sum up batch loss
+        test_loss += F.nll_loss(output, target, size_average=False).data
         pred = output.data.max(1, keepdim=True)[1]  # get the index of the max log-probability
         correct += pred.eq(target.data.view_as(pred)).sum().cpu()
 
