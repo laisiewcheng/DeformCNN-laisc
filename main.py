@@ -165,8 +165,8 @@ def main():
         loss.backward()
         optimizer.step()
 
-        train_loss += loss.data[0]
-        #train_loss += loss.data
+        #train_loss += loss.data[0]
+        train_loss += loss.data
         pred = output.data.max(1, keepdim=True)[1]  # get the index of the max log-probability
         per_acc = pred.eq(target.data.view_as(pred)).sum()
         train_acc += per_acc.cpu()
